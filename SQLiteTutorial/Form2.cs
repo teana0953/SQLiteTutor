@@ -45,14 +45,11 @@ namespace SQLiteTutorial
    
         private void btn_save_Click(object sender, EventArgs e)
         {
-            SQLiteConnection sqliteCon = new SQLiteConnection(dbConnectionString);
             //--- Open connection to database
             try
             {
-                sqliteCon.Open();
                 string Query = "INSERT INTO employeeinfo (eid,name,surname,age) VALUES('"+this.tb_eid.Text+ "','" + this.tb_name.Text + "','" + this.tb_surname.Text + "','" + this.tb_age.Text + "')";
-                SQLiteCommand sqliteCmd = new SQLiteCommand(Query, sqliteCon);
-                sqliteCmd.ExecuteNonQuery();
+                DataBaseOperation.ConnectToDataBase(dbConnectionString,Query,ref sqliteCon,ref sqliteCmd);
                 fill_comboBox();
                 MessageBox.Show("Saved");
                 sqliteCon.Close();
@@ -70,7 +67,7 @@ namespace SQLiteTutorial
             try
             {
                 sqliteCon.Open();
-                string Query = "UPDATE employeeinfo SET eid='"+this.tb_eid.Text+ "',name='" + this.tb_name.Text + "',surname='" + this.tb_surname.Text + "',age='" + this.tb_age.Text + "' WHERE eid = '" + this.tb_eid.Text + "' ";
+                string Query = "UPDATE employeeinfo SET eid='"+this.tb_eid.Text+ "',name='" + this.tb_name.Text + "',surname='" + this.tb_surname.Text + "',age='" + this.tb_age.Text + "'";    //WHERE eid = '" + this.tb_eid.Text + "'
                 SQLiteCommand sqliteCmd = new SQLiteCommand(Query, sqliteCon);
                 sqliteCmd.ExecuteNonQuery();
                 MessageBox.Show("Updated");
@@ -172,6 +169,7 @@ namespace SQLiteTutorial
         {
             try
             {
+                listView1.Items.Clear();
                 string Query = "SELECT eid,name,surname,age FROM employeeinfo";
                 DataBaseOperation.ConnectToDataBase(dbConnectionString,Query,ref sqliteCon,ref sqliteCmd);
 
@@ -179,7 +177,18 @@ namespace SQLiteTutorial
                 SQLiteDataAdapter dataAdp = new SQLiteDataAdapter(sqliteCmd);
                 DataTable dataTable = new DataTable("employeeinfo");    //name of database
                 dataAdp.Fill(dataTable);
-                dataGridView1.DataSource = dataTable.DefaultView;
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    listView1.BeginUpdate();
+                    DataRow dataRow = dataTable.Rows[i]; 
+                    ListViewItem listItem = new ListViewItem(dataRow["eid"].ToString());
+                    listItem.SubItems.Add(dataRow["name"].ToString());
+                    listItem.SubItems.Add(dataRow["surname"].ToString());
+                    listItem.SubItems.Add(dataRow["age"].ToString());
+                    listView1.Items.Add(listItem);
+                    listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                    listView1.EndUpdate();
+                }
                 dataAdp.Update(dataTable);
 
                 sqliteCon.Close();
