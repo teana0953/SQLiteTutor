@@ -20,3 +20,5 @@ C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTuto
 C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\Debug\SQLiteTutorial.Form2.resources
 C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\Debug\SQLiteTutorial.Properties.Resources.resources
 C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\Debug\SQLiteTutorial.csproj.GenerateResource.Cache
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\Debug\ExcelLibrary.dll
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\Debug\System.Data.SQLite.xml
