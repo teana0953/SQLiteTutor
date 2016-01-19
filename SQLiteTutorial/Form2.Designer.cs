@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tb_eid = new System.Windows.Forms.TextBox();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tb_surname = new System.Windows.Forms.TextBox();
@@ -60,9 +60,9 @@
             this.rb_male = new System.Windows.Forms.RadioButton();
             this.rb_female = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -236,24 +236,24 @@
             // 
             // chart1
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chart1.Legends.Add(legend8);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(231, 218);
             this.chart1.Name = "chart1";
-            series15.BorderColor = System.Drawing.Color.DarkRed;
-            series15.ChartArea = "ChartArea1";
-            series15.Color = System.Drawing.Color.Green;
-            series15.Legend = "Legend1";
-            series15.Name = "Age";
-            series16.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            series16.ChartArea = "ChartArea1";
-            series16.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            series16.Legend = "Legend1";
-            series16.Name = "Score";
-            this.chart1.Series.Add(series15);
-            this.chart1.Series.Add(series16);
+            series1.BorderColor = System.Drawing.Color.DarkRed;
+            series1.ChartArea = "ChartArea1";
+            series1.Color = System.Drawing.Color.Green;
+            series1.Legend = "Legend1";
+            series1.Name = "Age";
+            series2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            series2.ChartArea = "ChartArea1";
+            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            series2.Legend = "Legend1";
+            series2.Name = "Score";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(310, 183);
             this.chart1.TabIndex = 19;
             this.chart1.Text = "chart1";
@@ -330,6 +330,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Employee Info";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(22, 228);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 12);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "DOB";
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "yyyy-MM-dd";
@@ -348,15 +357,6 @@
             this.label5.TabIndex = 24;
             this.label5.Text = "Gender";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 228);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 12);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "DOB";
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -374,7 +374,6 @@
             this.Name = "Form2";
             this.Text = "Form2";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
-            this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox1.ResumeLayout(false);

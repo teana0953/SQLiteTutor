@@ -10,8 +10,13 @@ using System.Windows.Forms;
 
 using System.Data.SQLite;
 using System.IO;
+
+//---- from youtube
 using ExcelLibrary.CompoundDocumentFormat;
-using ExcelLibrary.SpreadSheet;   // from youtube
+using ExcelLibrary.SpreadSheet;  
+using ExcelLibrary.BinaryDrawingFormat;
+using ExcelLibrary.BinaryFileFormat;
+//---
 using System.Data.OleDb;
 
 

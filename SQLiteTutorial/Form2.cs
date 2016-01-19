@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
+
 namespace SQLiteTutorial
 {
     
@@ -173,7 +174,7 @@ namespace SQLiteTutorial
             {
                 listView1.Items.Clear();
                 string Query = "SELECT eid,name,surname,age FROM employeeinfo";
-                DataBaseOperation.ConnectToDataBase(dbConnectionString,Query,ref sqliteCon,ref sqliteCmd);
+                DataBaseOperation.ConnectToDataBase(dbConnectionString, Query, ref sqliteCon, ref sqliteCmd);
 
                 //--- add data to dataGrid
                 SQLiteDataAdapter dataAdp = new SQLiteDataAdapter(sqliteCmd);
@@ -183,8 +184,8 @@ namespace SQLiteTutorial
                 listView1.BeginUpdate();
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
-                    
-                    DataRow dataRow = dataTable.Rows[i]; 
+
+                    DataRow dataRow = dataTable.Rows[i];
                     ListViewItem listItem = new ListViewItem(dataRow["eid"].ToString());
                     listItem.SubItems.Add(dataRow["name"].ToString());
                     listItem.SubItems.Add(dataRow["surname"].ToString());
@@ -194,6 +195,37 @@ namespace SQLiteTutorial
                 }
                 listView1.EndUpdate();
                 dataAdp.Update(dataTable);
+
+                sqliteCon.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //--- data export to dataGridView
+            try
+            {
+                //dataGridView1.Columns.Clear();
+                string Query = "SELECT eid,name,surname,age FROM employeeinfo";
+                DataBaseOperation.ConnectToDataBase(dbConnectionString, Query, ref sqliteCon, ref sqliteCmd);
+
+                //--- add data to dataGrid
+                SQLiteDataAdapter dataAdp = new SQLiteDataAdapter(sqliteCmd);
+                DataTable dataTable = new DataTable();    //name of database
+                dataAdp.Fill(dataTable);
+                BindingSource bSource = new BindingSource();
+
+                bSource.DataSource = dataTable;
+                dataGridView1.DataSource = bSource;
+                dataAdp.Update(dataTable);
+
+                //--- export to excel  (需都為字串才能存入excel)
+                DataSet dataSet = new DataSet("New_DataSet");
+                dataSet.Locale = System.Threading.Thread.CurrentThread.CurrentCulture;
+                dataAdp.Fill(dataTable);
+                dataSet.Tables.Add(dataTable);
+                ExcelLibrary.DataSetHelper.CreateWorkbook("MyExcelFile.xls",dataSet);
 
                 sqliteCon.Close();
             }
@@ -257,11 +289,6 @@ namespace SQLiteTutorial
                 tb_surname.Text = row.Cells["surname"].Value.ToString();
                 tb_age.Text = row.Cells["age"].Value.ToString();
             }
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void rb_male_CheckedChanged(object sender, EventArgs e)
