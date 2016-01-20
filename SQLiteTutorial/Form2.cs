@@ -8,6 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 /*using Excel = Microsoft.Office.Interop.Excel;*/   // add referance -> COM -> Microsoft Excel Object Library
 
 
@@ -366,6 +369,77 @@ namespace SQLiteTutorial
         private void rb_female_CheckedChanged(object sender, EventArgs e)
         {
             Gender = "Female";
+        }
+
+        private void btn_createPDF_Click(object sender, EventArgs e)
+        {
+            Document doc = new Document(iTextSharp.text.PageSize.A4);
+            PdfWriter wri = PdfWriter.GetInstance(doc,new FileStream("Test.pdf",FileMode.Create));
+            doc.Open(); // Open Document to write
+
+            // add image
+            iTextSharp.text.Image JPEG = iTextSharp.text.Image.GetInstance("Basic_logo.jpg");
+
+            // resize image
+            //JPEG.ScalePercent(50f);
+            JPEG.ScaleToFit(250f,250f);
+            JPEG.Border = iTextSharp.text.Rectangle.BOX;
+            JPEG.BorderColor = iTextSharp.text.BaseColor.YELLOW;
+            JPEG.BorderWidth = 1f;
+            // location of image
+            JPEG.SetAbsolutePosition(doc.PageSize.Width -32f-212f,doc.PageSize.Height - 36f);
+
+            doc.Add(JPEG);
+
+            // write some content
+            Paragraph paragraph = new Paragraph("This is my first line using Paragraph.\n Hello world!");
+            // add the above created text using different class object to our PDF document
+            doc.Add(paragraph);
+
+            //--- 編號為羅馬編號
+            RomanList romanlist = new RomanList(true,15);   // true:lowwer case, 50: 編號後的間距
+            romanlist.IndentationLeft = 30f;
+            romanlist.Add("One");
+            romanlist.Add("two");
+            romanlist.Add("Three");
+            romanlist.Add("Four");
+            romanlist.Add("Five");
+
+            //doc.Add(romanlist);
+
+            List list = new List(List.ORDERED,40f);
+            list.SetListSymbol("\u2022");
+            list.IndentationLeft = 40f;  // 向左移
+
+            list.Add("One");
+            list.Add("Two");
+            list.Add("Three");
+            list.Add("Roman List");
+            list.Add(romanlist);        // list in list
+            list.Add("Four");
+            list.Add("Five");
+
+            doc.Add(list);
+
+            PdfPTable table = new PdfPTable(3);
+            //--- table header
+            PdfPCell cell = new PdfPCell(new Phrase("Header spanning 3 columns", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL,20f,iTextSharp.text.Font.NORMAL,iTextSharp.text.BaseColor.YELLOW)));
+            cell.BackgroundColor = new iTextSharp.text.BaseColor(0,150,0);  // RGB
+            cell.Colspan = 3;   // header size expand to 3 column
+            cell.HorizontalAlignment = 1; // 0 = Left, 1 = Centre, 2 = Right
+            table.AddCell(cell);
+            //---
+
+            table.AddCell("Col 1 Row 1");
+            table.AddCell("Col 2 Row 1");
+            table.AddCell("Col 3 Row 1");
+
+            table.AddCell("Col 1 Row 2");
+            table.AddCell("Col 2 Row 2");
+            table.AddCell("Col 3 Row 2");
+            doc.Add(table);
+
+            doc.Close();
         }
     }
 }

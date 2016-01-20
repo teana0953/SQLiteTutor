@@ -63,6 +63,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
+            this.btn_createPDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -254,7 +255,7 @@
             series2.Name = "Score";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(310, 183);
+            this.chart1.Size = new System.Drawing.Size(323, 183);
             this.chart1.TabIndex = 19;
             this.chart1.Text = "chart1";
             // 
@@ -357,11 +358,22 @@
             this.label5.TabIndex = 24;
             this.label5.Text = "Gender";
             // 
+            // btn_createPDF
+            // 
+            this.btn_createPDF.Location = new System.Drawing.Point(618, 408);
+            this.btn_createPDF.Name = "btn_createPDF";
+            this.btn_createPDF.Size = new System.Drawing.Size(75, 23);
+            this.btn_createPDF.TabIndex = 25;
+            this.btn_createPDF.Text = "Create PDF";
+            this.btn_createPDF.UseVisualStyleBackColor = true;
+            this.btn_createPDF.Click += new System.EventHandler(this.btn_createPDF_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 443);
+            this.Controls.Add(this.btn_createPDF);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lb_time);
             this.Controls.Add(this.btn_loadChart);
@@ -415,5 +427,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btn_createPDF;
     }
 }

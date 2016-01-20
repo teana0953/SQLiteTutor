@@ -51,7 +51,7 @@
             this.tb_sheet = new System.Windows.Forms.TextBox();
             this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
             this.btn_openPDF = new System.Windows.Forms.Button();
-            this.btn_openChrome = new System.Windows.Forms.Button();
+            this.btn_openExe = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.SuspendLayout();
@@ -238,22 +238,22 @@
             this.btn_openPDF.UseVisualStyleBackColor = true;
             this.btn_openPDF.Click += new System.EventHandler(this.btn_openPDF_Click);
             // 
-            // btn_openChrome
+            // btn_openExe
             // 
-            this.btn_openChrome.Location = new System.Drawing.Point(269, 282);
-            this.btn_openChrome.Name = "btn_openChrome";
-            this.btn_openChrome.Size = new System.Drawing.Size(89, 23);
-            this.btn_openChrome.TabIndex = 21;
-            this.btn_openChrome.Text = "Open chrome";
-            this.btn_openChrome.UseVisualStyleBackColor = true;
-            this.btn_openChrome.Click += new System.EventHandler(this.btn_openChrome_Click);
+            this.btn_openExe.Location = new System.Drawing.Point(332, 392);
+            this.btn_openExe.Name = "btn_openExe";
+            this.btn_openExe.Size = new System.Drawing.Size(89, 23);
+            this.btn_openExe.TabIndex = 21;
+            this.btn_openExe.Text = "Open exe file";
+            this.btn_openExe.UseVisualStyleBackColor = true;
+            this.btn_openExe.Click += new System.EventHandler(this.btn_openChrome_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 427);
-            this.Controls.Add(this.btn_openChrome);
+            this.Controls.Add(this.btn_openExe);
             this.Controls.Add(this.btn_openPDF);
             this.Controls.Add(this.axAcroPDF1);
             this.Controls.Add(this.tb_sheet);
@@ -308,7 +308,7 @@
         private System.Windows.Forms.TextBox tb_sheet;
         private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
         private System.Windows.Forms.Button btn_openPDF;
-        private System.Windows.Forms.Button btn_openChrome;
+        private System.Windows.Forms.Button btn_openExe;
     }
 }
 

@@ -16,3 +16,9 @@ C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTuto
 C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\x86\Debug\SQLiteTutorial.csproj.GenerateResource.Cache
 C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\x86\Debug\SQLiteTutorial.exe
 C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\x86\Debug\SQLiteTutorial.pdb
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\x86\Debug\itextsharp.dll
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\x86\Debug\itextsharp.pdfa.dll
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\x86\Debug\itextsharp.xtra.dll
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\x86\Debug\itextsharp.xml
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\x86\Debug\SQLiteTutorial.csprojResolveAssemblyReference.cache
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\x86\Debug\System.Data.SQLite.xml
