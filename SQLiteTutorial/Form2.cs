@@ -421,24 +421,48 @@ namespace SQLiteTutorial
 
             doc.Add(list);
 
-            PdfPTable table = new PdfPTable(3);
-            //--- table header
-            PdfPCell cell = new PdfPCell(new Phrase("Header spanning 3 columns", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL,20f,iTextSharp.text.Font.NORMAL,iTextSharp.text.BaseColor.YELLOW)));
-            cell.BackgroundColor = new iTextSharp.text.BaseColor(0,150,0);  // RGB
-            cell.Colspan = 3;   // header size expand to 3 column
-            cell.HorizontalAlignment = 1; // 0 = Left, 1 = Centre, 2 = Right
-            table.AddCell(cell);
-            //---
+            //PdfPTable table = new PdfPTable(3);
+            ////--- table header
+            //PdfPCell cell = new PdfPCell(new Phrase("Header spanning 3 columns", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL,20f,iTextSharp.text.Font.NORMAL,iTextSharp.text.BaseColor.YELLOW)));
+            //cell.BackgroundColor = new iTextSharp.text.BaseColor(0,150,0);  // RGB
+            //cell.Colspan = 3;   // header size expand to 3 column
+            //cell.HorizontalAlignment = 1; // 0 = Left, 1 = Centre, 2 = Right
+            //table.AddCell(cell);
+            ////---
 
-            table.AddCell("Col 1 Row 1");
-            table.AddCell("Col 2 Row 1");
-            table.AddCell("Col 3 Row 1");
+            //table.AddCell("Col 1 Row 1");
+            //table.AddCell("Col 2 Row 1");
+            //table.AddCell("Col 3 Row 1");
 
-            table.AddCell("Col 1 Row 2");
-            table.AddCell("Col 2 Row 2");
-            table.AddCell("Col 3 Row 2");
+            //table.AddCell("Col 1 Row 2");
+            //table.AddCell("Col 2 Row 2");
+            //table.AddCell("Col 3 Row 2");
+            //doc.Add(table);
+
+            PdfPTable table = new PdfPTable(dataGridView1.Columns.Count);
+
+            // add the headers from the DGV to the table
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                table.AddCell(new Phrase(dataGridView1.Columns[i].HeaderText));
+            }
+
+            // Flag the firt row as a header
+            table.HeaderRows = 1;
+
+            // add the actual rows from the DGV to the table
+            for (int j = 0; j < dataGridView1.Rows.Count; j++)
+            {
+                for (int k = 0; k < dataGridView1.Columns.Count; k++)
+                {
+                    if (dataGridView1[k,j].Value != null)
+                    {
+                        table.AddCell(new Phrase(dataGridView1[k,j].Value.ToString()));
+                    }
+                }
+            }
+
             doc.Add(table);
-
             doc.Close();
         }
     }
