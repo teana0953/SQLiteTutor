@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tb_pw = new System.Windows.Forms.TextBox();
             this.tb_user = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +44,16 @@
             this.btn_search = new System.Windows.Forms.Button();
             this.btn_createFile = new System.Windows.Forms.Button();
             this.btn_createExcelFile = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btn_chooseFile = new System.Windows.Forms.Button();
+            this.btn_loadFile = new System.Windows.Forms.Button();
+            this.tb_filePath = new System.Windows.Forms.TextBox();
+            this.tb_sheet = new System.Windows.Forms.TextBox();
+            this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
+            this.btn_openPDF = new System.Windows.Forms.Button();
+            this.btn_openChrome = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.SuspendLayout();
             // 
             // tb_pw
@@ -147,7 +158,7 @@
             // 
             // btn_createFile
             // 
-            this.btn_createFile.Location = new System.Drawing.Point(283, 211);
+            this.btn_createFile.Location = new System.Drawing.Point(246, 211);
             this.btn_createFile.Name = "btn_createFile";
             this.btn_createFile.Size = new System.Drawing.Size(75, 23);
             this.btn_createFile.TabIndex = 12;
@@ -157,7 +168,7 @@
             // 
             // btn_createExcelFile
             // 
-            this.btn_createExcelFile.Location = new System.Drawing.Point(267, 240);
+            this.btn_createExcelFile.Location = new System.Drawing.Point(332, 211);
             this.btn_createExcelFile.Name = "btn_createExcelFile";
             this.btn_createExcelFile.Size = new System.Drawing.Size(117, 23);
             this.btn_createExcelFile.TabIndex = 13;
@@ -165,11 +176,91 @@
             this.btn_createExcelFile.UseVisualStyleBackColor = true;
             this.btn_createExcelFile.Click += new System.EventHandler(this.btn_createExcelFile_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(471, 12);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(216, 193);
+            this.dataGridView1.TabIndex = 14;
+            // 
+            // btn_chooseFile
+            // 
+            this.btn_chooseFile.Location = new System.Drawing.Point(471, 211);
+            this.btn_chooseFile.Name = "btn_chooseFile";
+            this.btn_chooseFile.Size = new System.Drawing.Size(75, 23);
+            this.btn_chooseFile.TabIndex = 15;
+            this.btn_chooseFile.Text = "Choose File";
+            this.btn_chooseFile.UseVisualStyleBackColor = true;
+            this.btn_chooseFile.Click += new System.EventHandler(this.btn_chooseFile_Click);
+            // 
+            // btn_loadFile
+            // 
+            this.btn_loadFile.Location = new System.Drawing.Point(471, 240);
+            this.btn_loadFile.Name = "btn_loadFile";
+            this.btn_loadFile.Size = new System.Drawing.Size(75, 23);
+            this.btn_loadFile.TabIndex = 16;
+            this.btn_loadFile.Text = "Load File";
+            this.btn_loadFile.UseVisualStyleBackColor = true;
+            this.btn_loadFile.Click += new System.EventHandler(this.btn_loadFile_Click);
+            // 
+            // tb_filePath
+            // 
+            this.tb_filePath.Location = new System.Drawing.Point(552, 211);
+            this.tb_filePath.Name = "tb_filePath";
+            this.tb_filePath.Size = new System.Drawing.Size(135, 22);
+            this.tb_filePath.TabIndex = 17;
+            // 
+            // tb_sheet
+            // 
+            this.tb_sheet.Location = new System.Drawing.Point(552, 240);
+            this.tb_sheet.Name = "tb_sheet";
+            this.tb_sheet.Size = new System.Drawing.Size(135, 22);
+            this.tb_sheet.TabIndex = 18;
+            // 
+            // axAcroPDF1
+            // 
+            this.axAcroPDF1.Enabled = true;
+            this.axAcroPDF1.Location = new System.Drawing.Point(12, 223);
+            this.axAcroPDF1.Name = "axAcroPDF1";
+            this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
+            this.axAcroPDF1.Size = new System.Drawing.Size(218, 192);
+            this.axAcroPDF1.TabIndex = 19;
+            // 
+            // btn_openPDF
+            // 
+            this.btn_openPDF.Location = new System.Drawing.Point(236, 392);
+            this.btn_openPDF.Name = "btn_openPDF";
+            this.btn_openPDF.Size = new System.Drawing.Size(75, 23);
+            this.btn_openPDF.TabIndex = 20;
+            this.btn_openPDF.Text = "Open PDF";
+            this.btn_openPDF.UseVisualStyleBackColor = true;
+            this.btn_openPDF.Click += new System.EventHandler(this.btn_openPDF_Click);
+            // 
+            // btn_openChrome
+            // 
+            this.btn_openChrome.Location = new System.Drawing.Point(269, 282);
+            this.btn_openChrome.Name = "btn_openChrome";
+            this.btn_openChrome.Size = new System.Drawing.Size(89, 23);
+            this.btn_openChrome.TabIndex = 21;
+            this.btn_openChrome.Text = "Open chrome";
+            this.btn_openChrome.UseVisualStyleBackColor = true;
+            this.btn_openChrome.Click += new System.EventHandler(this.btn_openChrome_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(461, 266);
+            this.ClientSize = new System.Drawing.Size(839, 427);
+            this.Controls.Add(this.btn_openChrome);
+            this.Controls.Add(this.btn_openPDF);
+            this.Controls.Add(this.axAcroPDF1);
+            this.Controls.Add(this.tb_sheet);
+            this.Controls.Add(this.tb_filePath);
+            this.Controls.Add(this.btn_loadFile);
+            this.Controls.Add(this.btn_chooseFile);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_createExcelFile);
             this.Controls.Add(this.btn_createFile);
             this.Controls.Add(this.btn_search);
@@ -187,6 +278,8 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,6 +301,14 @@
         private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.Button btn_createFile;
         private System.Windows.Forms.Button btn_createExcelFile;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btn_chooseFile;
+        private System.Windows.Forms.Button btn_loadFile;
+        private System.Windows.Forms.TextBox tb_filePath;
+        private System.Windows.Forms.TextBox tb_sheet;
+        private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
+        private System.Windows.Forms.Button btn_openPDF;
+        private System.Windows.Forms.Button btn_openChrome;
     }
 }
 

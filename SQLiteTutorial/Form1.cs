@@ -17,7 +17,8 @@ using ExcelLibrary.SpreadSheet;
 using ExcelLibrary.BinaryDrawingFormat;
 using ExcelLibrary.BinaryFileFormat;
 //---
-using System.Data.OleDb;
+using System.Data.OleDb;    // load excel to dataGridView
+using System.Diagnostics;
 
 
 namespace SQLiteTutorial
@@ -145,6 +146,46 @@ namespace SQLiteTutorial
             // open xls file
             Workbook book = Workbook.Load(file);
             Worksheet sheet = book.Worksheets[0];       
+        }
+
+        private void btn_chooseFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.tb_filePath.Text = openFileDialog.FileName;
+            }
+        }
+
+        private void btn_loadFile_Click(object sender, EventArgs e)
+        {
+            string PathConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + tb_filePath.Text + ";Extended Properties=\"Excel 8.0;HDR=Yes;\";";
+            OleDbConnection conn = new OleDbConnection(PathConn);
+
+            OleDbDataAdapter myDataAdapter = new OleDbDataAdapter("SELECT * FROM ["+tb_sheet.Text+"$]", conn);
+            DataTable dt = new DataTable();
+
+            myDataAdapter.Fill(dt);
+            dataGridView1.DataSource = dt;
+        }
+
+        private void btn_openPDF_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                axAcroPDF1.src = openFileDialog.FileName;
+            }
+        }
+
+        private void btn_openChrome_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string FilePath = openFileDialog.FileName;
+                Process.Start(FilePath);
+            }
         }
     }
 }

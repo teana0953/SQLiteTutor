@@ -24,3 +24,7 @@ C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTuto
 C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\Debug\EPPlus.dll
 C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\Debug\EPPlus.xml
 C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\Debug\SQLiteTutorial.csproj.ResolveComReference.cache
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\Debug\AxInterop.AcroPDFLib.dll

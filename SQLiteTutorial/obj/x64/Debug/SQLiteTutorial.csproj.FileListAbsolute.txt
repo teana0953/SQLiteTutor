@@ -1,0 +1,2 @@
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\x64\Debug\SQLiteTutorial.csprojResolveAssemblyReference.cache
+C:\Users\tina.liang\Documents\Visual Studio 2015\Projects\SQLiteTutor\SQLiteTutorial\obj\x64\Debug\Interop.AcroPDFLib.dll

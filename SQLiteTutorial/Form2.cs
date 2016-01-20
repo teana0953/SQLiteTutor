@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
-using Excel = Microsoft.Office.Interop.Excel;   // add referance -> COM -> Microsoft Excel Object Library
+/*using Excel = Microsoft.Office.Interop.Excel;*/   // add referance -> COM -> Microsoft Excel Object Library
 
 
 
@@ -231,69 +231,70 @@ namespace SQLiteTutorial
                 ExcelLibrary.DataSetHelper.CreateWorkbook("MyExcelFile.xls",dataSet);
 
                 sqliteCon.Close();
-                
+
                 //--- export to excel by other method
-                Excel.Application excelApp;
-                Excel._Workbook wBook;
-                Excel._Worksheet wSheet;
-                Excel.Range wRange;
+                #region use pc's MicrosoftExcel
+                //Excel.Application excelApp;
+                //Excel._Workbook wBook;
+                //Excel._Worksheet wSheet;
+                //Excel.Range wRange;
 
-                string pathFile = @"D:\test";
-                excelApp = new Excel.Application();
-                excelApp.Visible = true;
-                excelApp.DisplayAlerts = false;
-                excelApp.Workbooks.Add(Type.Missing);   // add new workbook
-                wBook = excelApp.Workbooks[1];          // use first workbook
-                wBook.Activate();                       // 設定活頁簿焦點
+                //string pathFile = @"D:\test";
+                //excelApp = new Excel.Application();
+                //excelApp.Visible = true;
+                //excelApp.DisplayAlerts = false;
+                //excelApp.Workbooks.Add(Type.Missing);   // add new workbook
+                //wBook = excelApp.Workbooks[1];          // use first workbook
+                //wBook.Activate();                       // 設定活頁簿焦點
 
-                wSheet = (Excel._Worksheet)wBook.Worksheets[1];  // 引用第一個工作表
-                wSheet.Name = "工作表測試";
-                wSheet.Activate();
+                //wSheet = (Excel._Worksheet)wBook.Worksheets[1];  // 引用第一個工作表
+                //wSheet.Name = "工作表測試";
+                //wSheet.Activate();
 
-                excelApp.Cells[1, 1] = "Excel測試";
+                //excelApp.Cells[1, 1] = "Excel測試";
 
-                // 設定第1列資料
-                excelApp.Cells[1, 1] = "名稱";
-                excelApp.Cells[1, 2] = "數量";
-                // 設定第1列顏色
-                wRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, 2]];
-                wRange.Select();
-                wRange.Font.Color = ColorTranslator.ToOle(Color.White);
-                wRange.Interior.Color = ColorTranslator.ToOle(Color.DimGray);
+                //// 設定第1列資料
+                //excelApp.Cells[1, 1] = "名稱";
+                //excelApp.Cells[1, 2] = "數量";
+                //// 設定第1列顏色
+                //wRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, 2]];
+                //wRange.Select();
+                //wRange.Font.Color = ColorTranslator.ToOle(Color.White);
+                //wRange.Interior.Color = ColorTranslator.ToOle(Color.DimGray);
 
-                // 設定第2列資料
-                excelApp.Cells[2, 1] = "AA";
-                excelApp.Cells[2, 2] = "10";
+                //// 設定第2列資料
+                //excelApp.Cells[2, 1] = "AA";
+                //excelApp.Cells[2, 2] = "10";
 
-                // 設定第3列資料
-                excelApp.Cells[3, 1] = "BB";
-                excelApp.Cells[3, 2] = "20";
+                //// 設定第3列資料
+                //excelApp.Cells[3, 1] = "BB";
+                //excelApp.Cells[3, 2] = "20";
 
-                // 設定第4列資料
-                excelApp.Cells[4, 1] = "CC";
-                excelApp.Cells[4, 2] = "30";
+                //// 設定第4列資料
+                //excelApp.Cells[4, 1] = "CC";
+                //excelApp.Cells[4, 2] = "30";
 
-                // 設定第5列資料
-                excelApp.Cells[5, 1] = "總計";
+                //// 設定第5列資料
+                //excelApp.Cells[5, 1] = "總計";
 
-                //另存活頁簿
-                wBook.SaveAs(pathFile, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-                MessageBox.Show("儲存文件於 " + Environment.NewLine + pathFile);
+                ////另存活頁簿
+                //wBook.SaveAs(pathFile, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                //MessageBox.Show("儲存文件於 " + Environment.NewLine + pathFile);
 
-                //關閉活頁簿
-                wBook.Close(false, Type.Missing, Type.Missing);
+                ////關閉活頁簿
+                //wBook.Close(false, Type.Missing, Type.Missing);
 
-                //關閉Excel
-                excelApp.Quit();
+                ////關閉Excel
+                //excelApp.Quit();
 
-                //釋放Excel資源
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
-                wBook = null;
-                wSheet = null;
-                wRange = null;
-                excelApp = null;
-                GC.Collect();
-
+                ////釋放Excel資源
+                //System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+                //wBook = null;
+                //wSheet = null;
+                //wRange = null;
+                //excelApp = null;
+                //GC.Collect();
+                #endregion
             }
             catch (Exception ex)
             {
