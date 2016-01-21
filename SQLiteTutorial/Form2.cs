@@ -11,6 +11,8 @@ using System.Data.SQLite;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Diagnostics;
+using System.Windows.Forms.DataVisualization.Charting;
 /*using Excel = Microsoft.Office.Interop.Excel;*/   // add referance -> COM -> Microsoft Excel Object Library
 
 
@@ -374,7 +376,8 @@ namespace SQLiteTutorial
         private void btn_createPDF_Click(object sender, EventArgs e)
         {
             Document doc = new Document(iTextSharp.text.PageSize.A4);
-            PdfWriter wri = PdfWriter.GetInstance(doc,new FileStream("Test.pdf",FileMode.Create));
+            string pdfFileName = "Test.pdf";
+            PdfWriter wri = PdfWriter.GetInstance(doc,new FileStream(pdfFileName,FileMode.Create));
             doc.Open(); // Open Document to write
 
             // add image
@@ -382,13 +385,12 @@ namespace SQLiteTutorial
 
             // resize image
             //JPEG.ScalePercent(50f);
-            JPEG.ScaleToFit(250f,250f);
+            JPEG.ScaleToFit(150f,150f);
             JPEG.Border = iTextSharp.text.Rectangle.BOX;
             JPEG.BorderColor = iTextSharp.text.BaseColor.YELLOW;
             JPEG.BorderWidth = 1f;
             // location of image
             JPEG.SetAbsolutePosition(doc.PageSize.Width -32f-212f,doc.PageSize.Height - 36f);
-
             doc.Add(JPEG);
 
             // write some content
@@ -421,6 +423,9 @@ namespace SQLiteTutorial
 
             doc.Add(list);
 
+            paragraph = new Paragraph("\n");
+
+            doc.Add(paragraph);
             //PdfPTable table = new PdfPTable(3);
             ////--- table header
             //PdfPCell cell = new PdfPCell(new Phrase("Header spanning 3 columns", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL,20f,iTextSharp.text.Font.NORMAL,iTextSharp.text.BaseColor.YELLOW)));
@@ -463,7 +468,48 @@ namespace SQLiteTutorial
             }
 
             doc.Add(table);
+
+            // add chart to pdf
+            var chartimage = new MemoryStream();
+            chart1.SaveImage(chartimage, ChartImageFormat.Tiff);
+            iTextSharp.text.Image Chart_image = iTextSharp.text.Image.GetInstance(chartimage.GetBuffer());
+            Chart_image.ScalePercent(150f);
+            doc.Add(Chart_image);
+
             doc.Close();
+
+            //--- After finish create pdf, open the file's path
+            string path = System.AppDomain.CurrentDomain.BaseDirectory;
+            try
+            {
+                #region 開路徑
+                //if (!Directory.Exists(path))
+                //{
+                //    DirectoryInfo di = Directory.CreateDirectory(path);
+                //}
+                //System.Diagnostics.Process.Start(path);
+                #endregion
+
+                #region 開路徑後選擇執行exe
+                //OpenFileDialog openFileDialog = new OpenFileDialog();
+                //openFileDialog.InitialDirectory = path;
+                //openFileDialog.Filter = "PDF (*.pdf)|*.pdf";
+                //if (openFileDialog.ShowDialog() == DialogResult.OK)
+                //{
+                //    string FilePath = openFileDialog.FileName;
+                //    Process.Start(FilePath);
+                //}
+                #endregion
+
+                #region automatically open PDF teached by youtube
+                System.Diagnostics.Process.Start(path+@"\"+pdfFileName);
+                #endregion
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.Message);
+            }
+
         }
     }
 }
