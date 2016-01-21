@@ -13,6 +13,8 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Diagnostics;
 using System.Windows.Forms.DataVisualization.Charting;
+using iTextSharp.text.pdf.parser;   // read pdf in richtextbox
+
 /*using Excel = Microsoft.Office.Interop.Excel;*/   // add referance -> COM -> Microsoft Excel Object Library
 
 
@@ -511,5 +513,41 @@ namespace SQLiteTutorial
             }
 
         }
+
+        private void btn_readPDF_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            string filePath;
+            dlg.Filter = "PDF Files(*.pdf)|*.pdf|All Files(*.*)|*.*";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                filePath = dlg.FileName.ToString();
+
+                string strText = string.Empty;
+                try
+                {
+                    PdfReader reader = new PdfReader(filePath);
+                    for (int page = 1; page <= reader.NumberOfPages; page++)
+                    {
+                        ITextExtractionStrategy its = new iTextSharp.text.pdf.parser.LocationTextExtractionStrategy();
+                        String s = PdfTextExtractor.GetTextFromPage(reader,page,its);
+
+                        s = Encoding.UTF8.GetString(ASCIIEncoding.Convert(Encoding.Default,Encoding.UTF8,Encoding.Default.GetBytes(s)));
+                        strText += s;
+                        richTextBox1.Text = strText;
+                    }
+                    reader.Close();
+                }
+                catch (Exception ee)
+                {
+                    MessageBox.Show(ee.Message);
+                    throw;
+                }
+            }
+            StreamWriter File = new StreamWriter("PDF_to_Text.txt");
+            File.Write(richTextBox1.Text);
+            File.Close();
+    }
     }
 }
