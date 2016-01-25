@@ -55,7 +55,7 @@ namespace SQLiteTutorial
                     sqliteCon.Close();
                     //--- Opeining second form
                     this.Hide();
-                    Form2 form2 = new Form2();
+                    Form2 form2 = new Form2(tb_user.Text);
                     form2.ShowDialog();
                     //form2 = null;
                     //this.Show();
@@ -186,6 +186,32 @@ namespace SQLiteTutorial
                 string FilePath = openFileDialog.FileName;
                 Process.Start(FilePath);
             }
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            if(this.WindowState == FormWindowState.Minimized)
+            {
+                notifyIcon1.Icon = SystemIcons.Application;
+                notifyIcon1.BalloonTipText = "Your Form has been minimized";
+                notifyIcon1.ShowBalloonTip(1000);
+            }
+            else if (this.WindowState == FormWindowState.Normal)
+            {
+                notifyIcon1.BalloonTipText = "Your Form has come back to Normal";
+                notifyIcon1.ShowBalloonTip(1000);
+            }
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void btn_openWeb_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("test: Do u want to visit google?","Visit",MessageBoxButtons.YesNo,MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                System.Diagnostics.Process.Start("https://www.google.com.tw/");
         }
     }
 }

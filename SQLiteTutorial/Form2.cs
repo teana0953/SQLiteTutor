@@ -27,9 +27,14 @@ namespace SQLiteTutorial
         string dbConnectionString = @"Data Source=database.db;version = 3";
         SQLiteCommand sqliteCmd;
         SQLiteConnection sqliteCon;
-        public Form2()
+        DataTable dataTable;
+
+        Button btn = new Button();
+        public Form2(string userName)
         {
             InitializeComponent();
+            this.btn.Click += new System.EventHandler(this.btn_Click);
+            label7.Text = "Hello! "+ userName;
             fill_comboBox();
             fill_Listbox();
             timer1.Start();
@@ -42,7 +47,7 @@ namespace SQLiteTutorial
 
                 //--- add data to dataGrid
                 SQLiteDataAdapter dataAdp = new SQLiteDataAdapter(sqliteCmd);
-                DataTable dataTable = new DataTable("employeeinfo");    //name of database
+                dataTable = new DataTable("employeeinfo");    //name of database
                 dataAdp.Fill(dataTable);
                 dataGridView1.DataSource = dataTable.DefaultView;
                 dataAdp.Update(dataTable);
@@ -188,7 +193,7 @@ namespace SQLiteTutorial
 
                 //--- add data to dataGrid
                 SQLiteDataAdapter dataAdp = new SQLiteDataAdapter(sqliteCmd);
-                DataTable dataTable = new DataTable("employeeinfo");    //name of database
+                dataTable = new DataTable("employeeinfo");    //name of database
                 dataAdp.Fill(dataTable);
 
                 listView1.BeginUpdate();
@@ -549,5 +554,37 @@ namespace SQLiteTutorial
             File.Write(richTextBox1.Text);
             File.Close();
     }
+
+        private void tb_search_TextChanged(object sender, EventArgs e)
+        {
+            DataView DV = new DataView(dataTable);
+            DV.RowFilter = string.Format("surname Like '%{0}%'",tb_search.Text);   // databaseColumn Like...
+            dataGridView1.DataSource = DV;
+
+        }
+
+        private void tb_age_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)   // 8 : backspace key 46: delete key
+            {
+                e.Handled = true;
+                //MessageBox.Show("Please enter valid value");
+            }
+        }
+
+        private void btn_createBtn_Click(object sender, EventArgs e)
+        {
+            btn.Parent = this;
+            btn.Location = new System.Drawing.Point(900,143);
+            btn.Size = new System.Drawing.Size(94,42);
+            btn.Name = "Button_Name";
+            btn.Text = "New Button";
+        }
+
+        private void btn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Thank you");
+        }
     }
 }

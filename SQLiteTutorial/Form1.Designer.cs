@@ -52,6 +52,8 @@
             this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
             this.btn_openPDF = new System.Windows.Forms.Button();
             this.btn_openExe = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btn_openWeb = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.SuspendLayout();
@@ -248,11 +250,31 @@
             this.btn_openExe.UseVisualStyleBackColor = true;
             this.btn_openExe.Click += new System.EventHandler(this.btn_openChrome_Click);
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
+            this.notifyIcon1.BalloonTipTitle = "Form1";
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // btn_openWeb
+            // 
+            this.btn_openWeb.Location = new System.Drawing.Point(246, 255);
+            this.btn_openWeb.Name = "btn_openWeb";
+            this.btn_openWeb.Size = new System.Drawing.Size(75, 23);
+            this.btn_openWeb.TabIndex = 22;
+            this.btn_openWeb.Text = "open web";
+            this.btn_openWeb.UseVisualStyleBackColor = true;
+            this.btn_openWeb.Click += new System.EventHandler(this.btn_openWeb_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 427);
+            this.Controls.Add(this.btn_openWeb);
             this.Controls.Add(this.btn_openExe);
             this.Controls.Add(this.btn_openPDF);
             this.Controls.Add(this.axAcroPDF1);
@@ -274,10 +296,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb_user);
             this.Controls.Add(this.tb_pw);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Form1";
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
             this.ResumeLayout(false);
@@ -309,6 +331,8 @@
         private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
         private System.Windows.Forms.Button btn_openPDF;
         private System.Windows.Forms.Button btn_openExe;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Button btn_openWeb;
     }
 }
 
